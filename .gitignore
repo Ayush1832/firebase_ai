@@ -1,0 +1,26 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+# Secrets and local config (never commit)
+.env
+.env.*
+*.pem
+*.key
+service-account*.json
+*appcheck*debug*
+.firebase/
+.firebaserc.local
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Playwright / test artifacts
+test-results/
+playwright-report/
