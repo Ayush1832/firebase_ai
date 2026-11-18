@@ -24,7 +24,7 @@ Team: two members registered on Devpost. Suggested default split [D, Q-9]: **Per
 ## Phase 0 — Setup and risk spikes (Nov 18–19)
 
 - [ ] **T-0.1 [U] Firebase project.** Follow `13-SETUP-GUIDE.md` §2: create project, enable AI Logic (Gemini Developer API), register Web app, confirm App Check enforced, enable Remote Config and anonymous Auth. Decide billing (Q-8). Share the `firebaseConfig`. *Est 0.5. AC:* config received; AI Logic enabled.
-- [~] **T-0.2 Scaffold repo.** Vite multi-entry TS project, manifest.json (MV3, doc 12 §2), React side panel stub, Vitest, ESLint (restricted imports), `.env.example`. `.gitignore` already exists and covers env files, keys and debug tokens. Pin the Firebase SDK version after reading its changelog (TV-21). Fill the Commands section of CLAUDE.md. *Est 3. Dep T-0.1. AC:* `build` produces a loadable unpacked extension showing an empty side panel; tests and lint run.
+- [x] **T-0.2 Scaffold repo.** Vite multi-entry TS project, manifest.json (MV3, doc 12 §2), React side panel stub, Vitest, ESLint (restricted imports), `.env.example`. `.gitignore` already exists and covers env files, keys and debug tokens. Pin the Firebase SDK version after reading its changelog (TV-21). Fill the Commands section of CLAUDE.md. *Est 3. Dep T-0.1. AC:* `build` produces a loadable unpacked extension showing an empty side panel; tests and lint run.
 - [~] **T-0.3 LICENSE (Apache-2.0).** `LICENSE` committed (`e4f4505`). GitHub's license API reports Apache-2.0 (V-53). Remaining: logged-out visual check of the About section; add NOTICE only if needed. *Est 0.1. AC:* license visible in About, logged out.
 - [ ] **T-0.4 [U] Chrome setup.** Do `13-SETUP-GUIDE.md` §3: update Chrome, enable both flag variants (TV-7), relaunch, `await LanguageModel.availability()`, download the model (about 22 GB free needed), check `chrome://on-device-internals`; create a separate Chrome profile (Q-5). *Est 1 (mostly download). AC:* availability is `available`; model name/version recorded.
 - [ ] **T-0.4b Spike S-0: Firebase hybrid on localhost.** *Est 1. Dep T-0.1, T-0.4. AC:* three modes work; `inferenceSource` correct (doc 14). **Do this before S-1.**
@@ -43,16 +43,16 @@ Team: two members registered on Devpost. Suggested default split [D, Q-9]: **Per
 
 ## Phase 1 — Core engine (`src/core`, Nov 20–22)
 
-- [ ] **T-1.1 Types and message schemas** (`Span`, `MaskResult`, `GateResult`, `LedgerEntry`, branded `RawText`/`SanitizedText`, `ConsentState`, `AvailabilityState`) per doc 02 §3, doc 12 §4. *Est 2. AC:* typecheck; compile-fail test that `answer('plain string')` does not typecheck.
-- [ ] **T-1.2 Normalization with offset map** (NFKC, digit folding, zero-width removal; doc 09 §3). *Est 2. AC:* round-trip property tests.
-- [ ] **T-1.3 Deterministic detectors, GLOBAL pack:** email, phone (E.164), card (Luhn), IBAN (mod-97), account-context, DOB-context, credentials, API-key shapes, custom terms (doc 09 §6.1). *Est 5. AC:* all vectors in doc 09 §12 pass; invalid checksums rejected.
-- [ ] **T-1.4 Locale packs US and IN** (SSN, ABA; PAN, Aadhaar+Verhoeff, IFSC, UPI, IN phone). Country of residence is India (Q-3). *Est 4. AC:* tests per pack from doc 09 §12.
-- [ ] **T-1.5 Chunker** with overlap and offset mapping. *Est 3. AC:* round-trip; spans correct across chunk joins.
-- [ ] **T-1.6 Span merge and overlap resolution** (doc 09 §8). *Est 3. AC:* property-style tests (longest wins, high beats low, rules never removed, exclusions rules).
-- [ ] **T-1.7 Masker + vault** with canonical values, stable placeholders, collision avoidance for pre-existing placeholder-like text (T-11, doc 09 §9). *Est 3. AC:* tests.
-- [ ] **T-1.8 Safety gate** (doc 09 §9.3): rule re-scan, vault-value scan, chunk-boundary windows. *Est 3. AC:* adversarial tests (split values, unicode digits, spaced digits, zero-width characters).
-- [ ] **T-1.9 Restorer** exact + tolerant (doc 09 §10). *Est 3. AC:* tests with mangled variants; unknown tokens flagged; literals untouched.
-- [ ] **T-1.10 Policy module** (routing from inputs incl. consent, kill switch, offline; doc 10 §9) with Remote Config-shaped config and defaults. *Est 3. AC:* table-driven tests; I-6 test (no cloud route without consent).
+- [x] **T-1.1 Types and message schemas** (`Span`, `MaskResult`, `GateResult`, `LedgerEntry`, branded `RawText`/`SanitizedText`, `ConsentState`, `AvailabilityState`) per doc 02 §3, doc 12 §4. *Est 2. AC:* typecheck; compile-fail test that `answer('plain string')` does not typecheck.
+- [x] **T-1.2 Normalization with offset map** (NFKC, digit folding, zero-width removal; doc 09 §3). *Est 2. AC:* round-trip property tests.
+- [x] **T-1.3 Deterministic detectors, GLOBAL pack:** email, phone (E.164), card (Luhn), IBAN (mod-97), account-context, DOB-context, credentials, API-key shapes, custom terms (doc 09 §6.1). *Est 5. AC:* all vectors in doc 09 §12 pass; invalid checksums rejected.
+- [x] **T-1.4 Locale packs US and IN** (SSN, ABA; PAN, Aadhaar+Verhoeff, IFSC, UPI, IN phone). Country of residence is India (Q-3). *Est 4. AC:* tests per pack from doc 09 §12.
+- [x] **T-1.5 Chunker** with overlap and offset mapping. *Est 3. AC:* round-trip; spans correct across chunk joins.
+- [x] **T-1.6 Span merge and overlap resolution** (doc 09 §8). *Est 3. AC:* property-style tests (longest wins, high beats low, rules never removed, exclusions rules).
+- [x] **T-1.7 Masker + vault** with canonical values, stable placeholders, collision avoidance for pre-existing placeholder-like text (T-11, doc 09 §9). *Est 3. AC:* tests.
+- [x] **T-1.8 Safety gate** (doc 09 §9.3): rule re-scan, vault-value scan, chunk-boundary windows. *Est 3. AC:* adversarial tests (split values, unicode digits, spaced digits, zero-width characters).
+- [x] **T-1.9 Restorer** exact + tolerant (doc 09 §10). *Est 3. AC:* tests with mangled variants; unknown tokens flagged; literals untouched.
+- [x] **T-1.10 Policy module** (routing from inputs incl. consent, kill switch, offline; doc 10 §9) with Remote Config-shaped config and defaults. *Est 3. AC:* table-driven tests; I-6 test (no cloud route without consent).
 - [ ] **T-1.11 Synthetic personal-finance corpus** with ground truth (doc 06 §4). *Est 5. AC:* ≥ 60 samples (target 100), seeded generator script, all fake, dev/held-out split.
 - [ ] **T-1.12 Eval harness (rules layer)** reporting recall/precision per type. *Est 3. AC:* report runs in CI.
 - [ ] **T-1.13 Performance and adversarial tests** for detectors (doc 09 §11). *Est 1. AC:* 1 MB adversarial string within budget.

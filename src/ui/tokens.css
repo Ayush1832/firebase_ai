@@ -1,0 +1,44 @@
+/* CSS design tokens for Privacy Router per docs/11-UX-SPEC.md §2 */
+
+:root {
+  --bg: #FFFFFF;
+  --surface: #F6F8FA;
+  --text: #1A2330;
+  --muted: #5B6776;
+  --accent: #0B57D0;
+  --on-device: #0F7B53;
+  --cloud: #8A4B00;
+  --rules: #4D5A6B;
+  --danger: #B3261E;
+
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --radius-card: 8px;
+  --radius-chip: 999px;
+  --space-unit: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F1419;
+    --surface: #18202A;
+    --text: #E6EDF3;
+    --muted: #9AA7B5;
+    --accent: #8AB4F8;
+    --on-device: #5CC99B;
+    --cloud: #F2B866;
+    --rules: #AAB6C4;
+    --danger: #F2B8B5;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
+}

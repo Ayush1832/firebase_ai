@@ -55,7 +55,12 @@ tests/ fixtures/ scripts/ (synthetic only)   docs/   spikes/ (throwaway, not shi
 ```
 
 ## Commands
-Not created yet. Fill in after scaffolding (T-0.2): install, dev build, production build, unit tests, e2e tests, lint/typecheck, corpus generation, eval, secret scan. Don't invent commands before they exist.
+- Install: `npm install`
+- Dev build (watch): `npm run dev`
+- Production build: `npm run build` (outputs unpacked extension to `dist/`)
+- Unit tests: `npm test` (or `npm run test:watch`)
+- Type check: `npm run typecheck`
+- Lint: `npm run lint`
 
 ## Working agreements
 - Keep `src/core/` free of `chrome.*`, Firebase and React imports so it is unit-testable in Node.
