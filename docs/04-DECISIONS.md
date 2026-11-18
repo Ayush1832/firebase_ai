@@ -57,7 +57,7 @@ Format: Context, Decision, Alternatives, Consequences. Status: Accepted unless n
 
 ## ADR-012 — License: Apache-2.0
 - Decision: Apache-2.0 (the hackathon prefers Apache; any open-source license is accepted [V-8]). LICENSE must be detectable in the repo's About section.
-- Status: `LICENSE` committed (`e4f4505`, standard text, unmodified). GitHub detection in About is **not yet confirmed** (V-53); check after the next successful API call.
+- Status: `LICENSE` committed (`e4f4505`, standard text, unmodified). GitHub's license API reports Apache-2.0 (V-53); do a logged-out visual check of the About section before submission.
 
 ## ADR-013 — Cloud consent gate, 18+/region acknowledgment, on-device-only mode
 - Context: on the free Gemini API tier ("Unpaid Services") Google may use submitted content to improve products and human reviewers may read it, and the terms say not to submit sensitive, confidential or personal information [V-35]. The terms also require users to be 18+, forbid use in apps likely accessed by minors [V-37], and allow only Paid Services for users in the EEA, Switzerland and the UK [V-38]. Another entrant asked the organizers how this fits "free judge access" and had no answer yet (TV-19).

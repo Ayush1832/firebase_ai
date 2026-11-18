@@ -37,7 +37,7 @@ Legend: ☐ not done, ◐ partly, ☑ done. Status as of Nov 18.
 - ◐ **Platform selected** (Web/Chrome): saved on the draft.
 - ☐ **Text description**: how Firebase AI Logic is used, features and functionality, value proposition (`16-DEVPOST-DRAFT.md` §2).
 - ☐ **Public GitHub repo** with all source, assets, run instructions, value proposition, and **Firebase AI Logic imported and actually called at runtime** (not only in the README) (V-8). Repo is public but has docs only.
-- ◐ **Open-source license file** detectable and visible in the About section: Apache-2.0 committed (`e4f4505`); GitHub detection unconfirmed (V-53).
+- ◐ **Open-source license file** detectable and visible in the About section: Apache-2.0 committed (`e4f4505`); GitHub's license API reports Apache-2.0 (V-53); logged-out visual check still to do.
 - ☐ **Demo video**, ≤ 3:00, **public on YouTube**, English or subtitled, shows the project working in Chrome; link on the form. Avoid third-party logos/trademarks (V-9).
 - ☐ **Testing access**: strongly encouraged; extension build + instructions without secrets (V-10, V-11).
 - ☐ **App Check integrated** (debug token accepted, V-12) and **no tokens/keys committed** (V-11).

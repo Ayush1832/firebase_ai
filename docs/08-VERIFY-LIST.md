@@ -80,7 +80,7 @@ All "read" dates below are **Nov 18, 2026**. Docs and terms change; re-read the 
 | V-50 | Dev machine: Chrome **157.0.8103.79** on macOS 27.2 (Darwin 27.2.0), Apple M4, 16 GB RAM, about 300 GB free disk. Meets the V-42 hardware bar on paper (not yet tested). | Checked Nov 18 |
 | V-51 | Node v22.14.0, npm available; `playwright-core` installs from npm. A Playwright-controlled Chrome with remote debugging on port 9334 is running (profile from another project, **not** to be reused for this extension; use a separate profile, see doc 13). | Checked Nov 18 |
 | V-52 | Devpost project draft exists for this entry. Step 1 and parts of steps 2 and 3 are saved. See `docs/16-DEVPOST-DRAFT.md`. Devpost rejects a bare `youtube.com` as the video URL (field saved empty), and normalizes the "chrome-extension" tag to "chrome". | Observed Nov 18 |
-| V-53 | The repository `github.com/Ayush1832/firebase_ai` is public with an Apache-2.0 `LICENSE` committed (`e4f4505`). GitHub's license detection in the About section is **not yet confirmed** (API timed out). | Observed Nov 18 |
+| V-53 | The repository `github.com/Ayush1832/firebase_ai` is public with an Apache-2.0 `LICENSE` committed (`e4f4505`). GitHub's license API reports **Apache-2.0** for `LICENSE` (checked Nov 18 after the push; `gh repo view` briefly showed null while indexing). Visual check of the About section while logged out is still to do. | Observed Nov 18 |
 
 ## B. To verify (assumptions that must not be treated as fact)
 
@@ -145,4 +145,4 @@ Defaults in brackets are what the docs assume unless you say otherwise.
 | Nov 18 | V-6: "`ONLY_ON_DEVICE` throws if unavailable; PREFER_*/ONLY_IN_CLOUD do not wait for the download" (incomplete) | `ONLY_ON_DEVICE` **waits** for an in-progress download (minutes) and throws only if on-device is unavailable | hybrid get-started step 6 |
 | Nov 18 | Only one Chrome flag documented | Two names appear (Firebase docs vs hackathon FAQ); both must be checked (TV-7) | FAQ + docs |
 | Nov 18 | "Gemini cloud terms not read" | Read; free tier allows product-improvement use and human review (V-35) | Gemini API terms |
-| Nov 18 | Task T-0.3 / README said license planned | `LICENSE` committed | git |
+| Nov 18 | Task T-0.3 / README said license planned | `LICENSE` committed; GitHub license API reports Apache-2.0 | git, GitHub API |
