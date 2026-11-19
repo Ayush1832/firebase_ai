@@ -53,38 +53,38 @@ Team: two members registered on Devpost. Suggested default split [D, Q-9]: **Per
 - [x] **T-1.8 Safety gate** (doc 09 §9.3): rule re-scan, vault-value scan, chunk-boundary windows. *Est 3. AC:* adversarial tests (split values, unicode digits, spaced digits, zero-width characters).
 - [x] **T-1.9 Restorer** exact + tolerant (doc 09 §10). *Est 3. AC:* tests with mangled variants; unknown tokens flagged; literals untouched.
 - [x] **T-1.10 Policy module** (routing from inputs incl. consent, kill switch, offline; doc 10 §9) with Remote Config-shaped config and defaults. *Est 3. AC:* table-driven tests; I-6 test (no cloud route without consent).
-- [ ] **T-1.11 Synthetic personal-finance corpus** with ground truth (doc 06 §4). *Est 5. AC:* ≥ 60 samples (target 100), seeded generator script, all fake, dev/held-out split.
-- [ ] **T-1.12 Eval harness (rules layer)** reporting recall/precision per type. *Est 3. AC:* report runs in CI.
-- [ ] **T-1.13 Performance and adversarial tests** for detectors (doc 09 §11). *Est 1. AC:* 1 MB adversarial string within budget.
-- [ ] **T-1.14 Persistence adapters** for vault/conversation/ledger behind interfaces (memory + `storage.session`), settings/consent in `storage.local` (doc 12 §5). *Est 2. AC:* fake storage tests; L-5.
+- [x] **T-1.11 Synthetic personal-finance corpus** with ground truth (doc 06 §4). *Est 5. AC:* ≥ 60 samples (target 100), seeded generator script, all fake, dev/held-out split.
+- [x] **T-1.12 Eval harness (rules layer)** reporting recall/precision per type. *Est 3. AC:* report runs in CI.
+- [x] **T-1.13 Performance and adversarial tests** for detectors (doc 09 §11). *Est 1. AC:* 1 MB adversarial string within budget.
+- [x] **T-1.14 Persistence adapters** for vault/conversation/ledger behind interfaces (memory + `storage.session`), settings/consent in `storage.local` (doc 12 §5). *Est 2. AC:* fake storage tests; L-5.
 
 ## Phase 2 — Side-panel product (Nov 23–25)
 
-- [ ] **T-2.1 AI wrapper (`src/ai`):** three model instances (doc 10 §1), `redactOnDevice` with schema validation and substring-to-offset mapping, `answer` (sanitized only), availability state machine, timeouts, `inferenceSource` capture and the redactor assertion (I-5). *Est 8. AC:* unit tests with a fake AI port; lint rule restricting `getGenerativeModel` to `src/ai/`.
-- [ ] **T-2.2 Model availability + download UX** (doc 11 §4.1, §4.9; doc 10 §2). *Est 3. AC:* manual test with model absent, downloading and present.
-- [ ] **T-2.3 Pipeline orchestrator** (chunk, detect, merge, mask, gate) with cancellation and progress events. *Est 4. AC:* integration test with fake AI; rules-only path; degraded-chunk path.
-- [ ] **T-2.4 Chat UI:** composer, message list, restored answers, route badges, streaming if supported **[TV-9]**. *Est 5. AC:* usable end to end with a fake cloud.
-- [ ] **T-2.5 Review sheet** (doc 11 §4.4): highlights by type, un-mask, add mask by selection, reduced-confidence banner, "show what the AI will see", send gated by the gate result. *Est 6. AC:* keyboard accessible; e2e test.
-- [ ] **T-2.6 Ledger drawer** (doc 11 §4.5) with `ON-DEVICE` / `CLOUD` / `RULES` badges, counts, "View sanitized". *Est 3. AC:* matches actual calls in the leak test.
-- [ ] **T-2.7 Routing integration:** hybrid answer path, manual override, offline handling, on-device-only mode (F-17). *Est 3. AC:* airplane mode changes the route visibly.
-- [ ] **T-2.8 Remote Config + App Check + anonymous Auth wiring** with offline defaults (doc 12 §6). *Est 4. AC:* extension fully works with Remote Config unreachable.
-- [ ] **T-2.9 Options page:** entity types, packs, custom terms, strict mode, privacy explainer, consent status, **tester config** (F-18, doc 12 §7). *Est 5. AC:* persisted settings survive restart; tester path works with another Firebase project.
-- [ ] **T-2.10 Onboarding flow** (3 steps) and sample finance text button (doc 11 §4.6). *Est 3. AC:* clean profile reaches a first masked chat in under 2 minutes.
-- [ ] **T-2.11 Error and empty states** for every item in doc 11 §7. *Est 3. AC:* each has a designed message.
-- [ ] **T-2.12 Visual design pass** (tokens, type scale, spacing, dark mode, doc 11 §2). *Est 4. AC:* screenshot review.
-- [ ] **T-2.13 Cloud consent gate** (ADR-013, doc 11 §4.7): dialog, versioned storage, enforcement in policy. *Est 3. AC:* I-6 test: no cloud request without consent; revocation works.
-- [ ] **T-2.14 Leak and mode tests wired** (L-1, L-2, L-3, L-4, L-6) running in CI against the fake AI. *Est 3. AC:* green in CI.
+- [x] **T-2.1 AI wrapper (`src/ai`):** three model instances (doc 10 §1), `redactOnDevice` with schema validation and substring-to-offset mapping, `answer` (sanitized only), availability state machine, timeouts, `inferenceSource` capture and the redactor assertion (I-5). *Est 8. AC:* unit tests with a fake AI port; lint rule restricting `getGenerativeModel` to `src/ai/`.
+- [x] **T-2.2 Model availability + download UX** (doc 11 §4.1, §4.9; doc 10 §2). *Est 3. AC:* manual test with model absent, downloading and present.
+- [x] **T-2.3 Pipeline orchestrator** (chunk, detect, merge, mask, gate) with cancellation and progress events. *Est 4. AC:* integration test with fake AI; rules-only path; degraded-chunk path.
+- [x] **T-2.4 Chat UI:** composer, message list, restored answers, route badges, streaming if supported **[TV-9]**. *Est 5. AC:* usable end to end with a fake cloud.
+- [x] **T-2.5 Review sheet** (doc 11 §4.4): highlights by type, un-mask, add mask by selection, reduced-confidence banner, "show what the AI will see", send gated by the gate result. *Est 6. AC:* keyboard accessible; e2e test.
+- [x] **T-2.6 Ledger drawer** (doc 11 §4.5) with `ON-DEVICE` / `CLOUD` / `RULES` badges, counts, "View sanitized". *Est 3. AC:* matches actual calls in the leak test.
+- [x] **T-2.7 Routing integration:** hybrid answer path, manual override, offline handling, on-device-only mode (F-17). *Est 3. AC:* airplane mode changes the route visibly.
+- [x] **T-2.8 Remote Config + App Check + anonymous Auth wiring** with offline defaults (doc 12 §6). *Est 4. AC:* extension fully works with Remote Config unreachable.
+- [x] **T-2.9 Options page:** entity types, packs, custom terms, strict mode, privacy explainer, consent status, **tester config** (F-18, doc 12 §7). *Est 5. AC:* persisted settings survive restart; tester path works with another Firebase project.
+- [x] **T-2.10 Onboarding flow** (3 steps) and sample finance text button (doc 11 §4.6). *Est 3. AC:* clean profile reaches a first masked chat in under 2 minutes.
+- [x] **T-2.11 Error and empty states** for every item in doc 11 §7. *Est 3. AC:* each has a designed message.
+- [x] **T-2.12 Visual design pass** (tokens, type scale, spacing, dark mode, doc 11 §2). *Est 4. AC:* screenshot review.
+- [x] **T-2.13 Cloud consent gate** (ADR-013, doc 11 §4.7): dialog, versioned storage, enforcement in policy. *Est 3. AC:* I-6 test: no cloud request without consent; revocation works.
+- [x] **T-2.14 Leak and mode tests wired** (L-1, L-2, L-3, L-4, L-6) running in CI against the fake AI. *Est 3. AC:* green in CI.
 
 ## Phase 3 — Guard (Nov 26–27)
 
-- [ ] **T-3.1 Guard framework** (doc 12 §8): adapter interface, message bridge to the engine host, `OPEN_PANEL` flow, overlay UI, re-scan on TOCTOU change. *Est 5. AC:* works on a local test page; spike S-2b result applied.
-- [ ] **T-3.2 chatgpt.com adapter** (spike S-7; selectors **[TV-11]**). *Est 3. AC:* masked text replaces prompt text and submit proceeds only after confirm.
-- [ ] **T-3.3 claude.ai adapter.** Same AC. *Est 3.*
-- [ ] **T-3.4 gemini.google.com adapter.** Same AC. *Est 3.*
-- [ ] **T-3.5 Failure behavior:** "guard inactive on this page" / "open Privacy Router" states, never silent. *Est 1. AC:* manual test.
-- [ ] **T-3.6 Permissions audit:** manifest reviewed; only `sidePanel` and `storage` plus the three content-script matches (doc 12 §2). *Est 0.5. AC:* each permission justified in doc 12.
+- [x] **T-3.1 Guard framework** (doc 12 §8): adapter interface, message bridge to the engine host, `OPEN_PANEL` flow, overlay UI, re-scan on TOCTOU change. *Est 5. AC:* works on a local test page; spike S-2b result applied.
+- [x] **T-3.2 chatgpt.com adapter** (spike S-7; selectors **[TV-11]**). *Est 3. AC:* masked text replaces prompt text and submit proceeds only after confirm.
+- [x] **T-3.3 claude.ai adapter.** Same AC. *Est 3.*
+- [x] **T-3.4 gemini.google.com adapter.** Same AC. *Est 3.*
+- [x] **T-3.5 Failure behavior:** "guard inactive on this page" / "open Privacy Router" states, never silent. *Est 1. AC:* manual test.
+- [x] **T-3.6 Permissions audit:** manifest reviewed; only `sidePanel` and `storage` plus the three content-script matches (doc 12 §2). *Est 0.5. AC:* each permission justified in doc 12.
 - [ ] **T-3.7 (stretch) Response restore** on third-party sites. *AC:* only if everything else is done.
-- [ ] **T-3.8 Local mock prompt page** for the demo video (ADR-021). *Est 1. AC:* looks neutral (no third-party branding); behaves like a prompt page for the guard.
+- [x] **T-3.8 Local mock prompt page** for the demo video (ADR-021). *Est 1. AC:* looks neutral (no third-party branding); behaves like a prompt page for the guard.
 
 ## Phase 4 — Hardening (Nov 28; feature freeze in the evening)
 

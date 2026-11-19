@@ -1,19 +1,31 @@
-/* CSS design tokens for Privacy Router per docs/11-UX-SPEC.md §2 */
+/* CSS design tokens and core classes for Privacy Router per docs/11-UX-SPEC.md */
 
 :root {
   --bg: #FFFFFF;
   --surface: #F6F8FA;
+  --surface-hover: #ECEFF3;
+  --surface-active: #E1E6EB;
+  --border: #D0D7DE;
   --text: #1A2330;
   --muted: #5B6776;
   --accent: #0B57D0;
+  --accent-hover: #08429E;
+  --accent-subtle: #E8F0FE;
   --on-device: #0F7B53;
+  --on-device-bg: #E6F4EA;
   --cloud: #8A4B00;
+  --cloud-bg: #FEF7E0;
   --rules: #4D5A6B;
+  --rules-bg: #EAEFF5;
   --danger: #B3261E;
+  --danger-bg: #FCE8E6;
+  --warning: #B06000;
+  --warning-bg: #FFF3E0;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
+  --radius-sm: 4px;
   --radius-card: 8px;
   --radius-chip: 999px;
   --space-unit: 4px;
@@ -23,14 +35,29 @@
   :root {
     --bg: #0F1419;
     --surface: #18202A;
+    --surface-hover: #222C3A;
+    --surface-active: #2C394B;
+    --border: #30363D;
     --text: #E6EDF3;
     --muted: #9AA7B5;
     --accent: #8AB4F8;
+    --accent-hover: #AECBFA;
+    --accent-subtle: #172B4D;
     --on-device: #5CC99B;
+    --on-device-bg: #0D3323;
     --cloud: #F2B866;
+    --cloud-bg: #382405;
     --rules: #AAB6C4;
+    --rules-bg: #212B36;
     --danger: #F2B8B5;
+    --danger-bg: #491717;
+    --warning: #F5B041;
+    --warning-bg: #3E2905;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -41,4 +68,139 @@ body {
   font-family: var(--font-family);
   font-size: 14px;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Badge components */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-chip);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-on-device {
+  background-color: var(--on-device-bg);
+  color: var(--on-device);
+}
+
+.badge-cloud {
+  background-color: var(--cloud-bg);
+  color: var(--cloud);
+}
+
+.badge-rules {
+  background-color: var(--rules-bg);
+  color: var(--rules);
+}
+
+.badge-danger {
+  background-color: var(--danger-bg);
+  color: var(--danger);
+}
+
+.badge-warning {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* Entity chips */
+.entity-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  margin: 0 2px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.entity-chip:hover {
+  background: var(--surface-active);
+}
+
+.entity-chip.unmasked {
+  background: transparent;
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.entity-chip-label {
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+/* Modal and Drawer backdrop */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
 }

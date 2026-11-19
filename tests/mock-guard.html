@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chat Assistant (Mock Prompt Page - ADR-021)</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --surface: #F8FAFC;
+      --border: #E2E8F0;
+      --text: #0F172A;
+      --muted: #64748B;
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F172A;
+        --surface: #1E293B;
+        --border: #334155;
+        --text: #F8FAFC;
+        --muted: #94A3B8;
+        --primary: #3B82F6;
+        --primary-hover: #60A5FA;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+    }
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    main {
+      flex: 1;
+      padding: 24px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    .chat-bubble {
+      padding: 12px 16px;
+      border-radius: 8px;
+      max-width: 80%;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .bubble-assistant {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      align-self: flex-start;
+    }
+    .bubble-user {
+      background: var(--primary);
+      color: #fff;
+      align-self: flex-end;
+    }
+    .composer-area {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .quick-samples {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sample-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .sample-btn:hover {
+      background: var(--border);
+    }
+    .input-wrapper {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    textarea#mock-prompt-input {
+      flex: 1;
+      resize: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.4;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      min-height: 60px;
+    }
+    textarea#mock-prompt-input:focus {
+      border-color: var(--primary);
+    }
+    button#mock-send-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      height: 60px;
+    }
+    button#mock-send-btn:hover {
+      background: var(--primary-hover);
+    }
+    .submission-log {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 6px;
+      background: var(--border);
+      font-family: monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Chat Assistant (Mock Prompt Page)</h1>
+    <span style="font-size: 12px; color: var(--muted);">ADR-021 Neutral Testing Surface</span>
+  </header>
+
+  <main id="chat-stream">
+    <div class="chat-bubble bubble-assistant">
+      Hello! How can I assist you with your finances, letters, or questions today?
+    </div>
+  </main>
+
+  <div class="composer-area">
+    <div class="quick-samples">
+      <span style="font-size: 12px; color: var(--muted); align-self: center;">Samples:</span>
+      <button class="sample-btn" onclick="insertSample(1)">Card Dispute (4242 4242...)</button>
+      <button class="sample-btn" onclick="insertSample(2)">Wire Transfer (Aadhaar & IFSC)</button>
+      <button class="sample-btn" onclick="insertSample(3)">Public Question (No Personal Info)</button>
+    </div>
+
+    <div class="input-wrapper">
+      <textarea id="mock-prompt-input" placeholder="Type a message or dispute request…"></textarea>
+      <button id="mock-send-btn" type="button">Send ▶</button>
+    </div>
+
+    <div id="sub-log" class="submission-log" style="display: none;">
+      <strong>Last Submitted Payload Received by Page:</strong>
+      <div id="sub-payload" style="margin-top: 4px; color: var(--primary);"></div>
+    </div>
+  </div>
+
+  <script>
+    const textarea = document.getElementById('mock-prompt-input');
+    const sendBtn = document.getElementById('mock-send-btn');
+    const chatStream = document.getElementById('chat-stream');
+    const subLog = document.getElementById('sub-log');
+    const subPayload = document.getElementById('sub-payload');
+
+    function insertSample(type) {
+      if (type === 1) {
+        textarea.value = "Hi Priya Sharma, please dispute the charge on my card 4242 4242 4242 4242 for $120.50. You can reach me at priya@example.com.";
+      } else if (type === 2) {
+        textarea.value = "Transfer ₹50,000 to Dev Kapoor at IFSC HDFC0001234. My Aadhaar number is 2000 0000 0006.";
+      } else {
+        textarea.value = "What is the difference between a high-yield savings account and a certificate of deposit?";
+      }
+      textarea.focus();
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+
+      // Add user bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble bubble-user';
+      userBubble.textContent = text;
+      chatStream.appendChild(userBubble);
+
+      // Display log of what page received
+      subLog.style.display = 'block';
+      subPayload.textContent = text;
+
+      // Simulate Assistant Reply
+      setTimeout(() => {
+        const asstBubble = document.createElement('div');
+        asstBubble.className = 'chat-bubble bubble-assistant';
+        asstBubble.textContent = "I have received your request regarding: " + text.slice(0, 40) + "… I can help you with this right away.";
+        chatStream.appendChild(asstBubble);
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }, 500);
+
+      textarea.value = '';
+      chatStream.scrollTop = chatStream.scrollHeight;
+    });
+  </script>
+</body>
+</html>

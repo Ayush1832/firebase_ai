@@ -25,7 +25,7 @@ export default [
         {
           patterns: [
             {
-              group: ['**/ai/*', 'firebase/ai'],
+              group: ['firebase/ai', '@firebase/ai'],
               message: 'Direct AI logic or getGenerativeModel is restricted to src/ai/ only.',
             },
           ],
@@ -33,7 +33,7 @@ export default [
       ],
     },
   },
-  // src/core must be 100% pure TypeScript: no chrome, no firebase, no react
+  // src/core must be 100% pure TypeScript: no chrome, no firebase, no react, no ai
   {
     files: ['src/core/**/*.ts'],
     rules: {
@@ -49,6 +49,7 @@ export default [
           ],
           patterns: [
             { group: ['firebase/*'], message: 'src/core must not import Firebase.' },
+            { group: ['**/ai/*', '../ai/*'], message: 'src/core must not import AI logic.' },
             { group: ['**/extension/*'], message: 'src/core must not import extension contexts.' },
           ],
         },

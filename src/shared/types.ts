@@ -148,6 +148,7 @@ export interface LedgerEntry {
     mangled: number;
   };
   consentVersion?: number;
+  sanitizedPreview?: string;
 }
 
 export interface ConsentState {
